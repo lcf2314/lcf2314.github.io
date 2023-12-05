@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akhil's Tea Estate</title>
+  <link rel="stylesheet" href="App.css" />
+  <link rel="stylesheet" href="CSS/media.css">
+
+</head>
+<body>
+
+  <section id="header">
+    <a href="#"><img src="img/newlogo.png" width="8%" height="8%" class="logo" alt=""></a>
+
+    <div>
+      <ul id="navbar">
+        <li><a class="active" href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="team.html">Our&nbsp;Team</a></li>
+        <li><a href="specials.html">Specials</a></li>
+        <li><a href="training.html">Training</a></li>
+        <li><a href="media.html">Media</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="contact.html">Contact&nbsp;Us</a></li>
+        <li><a href="cart.html"></a><i class="fa-solid fa-bag-shopping"></i></a></li>
+
+      </ul>
+    </div>
+  </section>
+
+
+
+
+
+  <div class="media-container">
+    <section class="video-section">
+        <h2>Playback Area</h2>
+        <div class="video-container">
+            <video controls>
+                <source src="videos/featured_video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+    <section class="audio-section">
+        <h2>Featured Audio</h2>
+        <div class="audio-container">
+            <audio id="audioPlayer" controls>
+              <source src="alee kinder - rain to snow  lyrics  FULL SONG.mp3" type="audio/mp3">
+                Your browser does not support the audio tag.
+            </audio>
+            <canvas id="audioCanvas" width="400" height="100"></canvas>
+        </div>
+    </section>
+    <section class="video-rail">
+        <h2>Video Rail - Click below</h2>
+        <div class="video-thumbnails">
+          <img src="img/34-asana-color-gradient.jpg" width = "5px" height = "50px" alt="Video 1" class="video-thumbnail" onclick="enlargeVideo('BaristaOne Twin Promo - The Ultimate Commercial Coffee Machine for Business.mp4')">
+          <img src="img/360_F_310162798_6hWbaSFgDtWp4AhhaKPlTgAZUDL1c4UY.jpg" width = "5px" height = "50px" alt="Video 2" class="video-thumbnail" onclick="enlargeVideo('City Vending Coffee Machine Promo Video.mp4')">
+          <img src="img/beautiful-color-ui-gradients-backgrounds-roseanna.png" width = "5px" height = "50px" alt="Video 3" class="video-thumbnail" onclick="enlargeVideo('Concordia Xpress Touch 0 Promo Video.mp4')">
+          <img src="img/images.jpeg" width = "5px" height = "50px" alt="Video 4" class="video-thumbnail" onclick="enlargeVideo('Espresso Machine Promo - Epic Coffee B Roll.mp4')">
+        </div>
+    </section>
+</div>
+
+
+
+  <section id="newsletter" class="section-p1 section-m1">
+    <div class="newstext">
+      <h4>Sign up for newsletters</h4>
+      <p>Get E-mail updates about our latest shop and <span>special offers.</span></p>
+    </div>
+
+    <div class="form">
+      <input type="text" placeholder="Your email address">
+      <button class="normal pill-button">Sign Up</button>
+    </div>
+  </section>
+
+  <footer class="section-p1">
+    <div class="col">
+      <img src="img/Akhil’s coffee grinders.png" width="7%" height="7%" alt="">
+      <p>&copy; Copyright 2099. All Rights Reserved.</p>
+      <p><a href="mailto:c0919343@mylambton.ca">Request information</a></p>
+      <p><strong>AKHIL ANTONY JOSEPH</strong> - C0919343</p>
+      <div class="follow">
+        <h4>Follow us</h4>
+        <div class="icon">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-pinterest-p"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <script>
+    function enlargeVideo(videoSource) {
+        var videoContainer = document.querySelector('.video-container video');
+        videoContainer.src = videoSource;
+        videoContainer.parentElement.style.display = 'block';
+        videoContainer.play(); 
+    }
+
+    var audio = document.getElementById('audioPlayer');
+    var audioCanvas = document.getElementById('audioCanvas');
+    var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    var analyser = audioContext.createAnalyser();
+    var canvasContext = audioCanvas.getContext('2d');
+
+    var source = audioContext.createMediaElementSource(audio);
+    source.connect(analyser);
+    analyser.connect(audioContext.destination);
+
+    analyser.fftSize = 256;
+    var bufferLength = analyser.frequencyBinCount;
+    var dataArray = new Uint8Array(bufferLength);
+
+    function draw() {
+        analyser.getByteFrequencyData(dataArray);
+        canvasContext.clearRect(0, 0, audioCanvas.width, audioCanvas.height);
+
+        var barWidth = (audioCanvas.width / bufferLength) * 2.5;
+        var barHeight;
+        var x = 0;
+
+        for (var i = 0; i < bufferLength; i++) {
+            barHeight = dataArray[i] * 2;
+
+            canvasContext.fillStyle = '#3498db';
+            canvasContext.fillRect(x, audioCanvas.height - barHeight / 2, barWidth, barHeight);
+
+            x += barWidth + 1;
+        }
+
+        requestAnimationFrame(draw);
+    }
+
+    audio.addEventListener('play', function () {
+        audioContext.resume().then(() => {
+            draw();
+        });
+    });
+</script>
+
+  <script src="App.js"></script>
+</body>
+</html>

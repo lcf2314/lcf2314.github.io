@@ -165,7 +165,7 @@ body
 
 #hero
 {
-  background-image: url("img/a1.png");
+  background-image: url("img/banner/homeban1.gif");
   height: 90vh;
   width: 100%;
   background-size: cover;
@@ -200,16 +200,17 @@ body
   font-size: 24px;
   text-align: center;
   animation: glowing 2s linear infinite;
+  color: #c81515;
 }
 
 #hero h1
 {
-  color: #088178;
+  color: #73e2f1;
 }
 
 #hero h2
 {
-  color: #088178;
+  color: #84e5f2;
 }
 
 #hero p
@@ -361,13 +362,65 @@ product1 .pro .cart
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-image: url("img/banner/il_1588xN.3334884066_abbm.avif");
+  background-image: url("./img/banner/il_1588xN.3334884066_abbm.avif");
   width: 100%;
   height: 40vh;
   background-size: cover;
   background-position: center;
 
 }
+
+#banner1
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: url("./img/banner/d733345e4f11231904e7634a04439e21.gif");
+  width: 100%;
+  height: 40vh;
+  background-size: cover;
+  background-position: center;
+
+}
+
+#banner2
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: url("./img/banner/homeban2.gif");
+  width: 100%;
+  height: 40vh;
+  background-size: cover;
+  background-position: center;
+
+}
+
+
+#banner2 h4
+{
+  color: white;
+  font-size: 16px;
+}
+
+#banner2 h2
+{
+  color: white;
+  font-size: 30px;
+  padding: 10px 0;
+}
+
+#banner2 h2 span
+{
+  color: #ef3636;
+}
+
+
+
 
 #banner h4
 {
@@ -556,6 +609,39 @@ product1 .pro .cart
 {
   display: flex;
   width: 40%;
+}
+
+
+
+
+/* Enlarge and center product images on hover */
+.product-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-image:hover {
+  transform: scale(2.5); /* You can adjust the scale factor based on your preference */
+  position: relative;
+  z-index: 1;
+}
+
+/* Enlarge and center logo on hover */
+.logo {
+  width: 7%;
+  height: 7%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.logo:hover {
+  transform: scale(1.5); /* You can adjust the scale factor based on your preference */
+  position: relative;
+  z-index: 1;
 }
 
 

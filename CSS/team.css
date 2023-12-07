@@ -19,7 +19,7 @@ main {
 }
 
 .team-image {
-    width: 170px;
+    width: 250px;
     height: 300px;
     object-fit: cover;
     border-radius: 8px;
@@ -62,3 +62,4 @@ main {
         transform: translateX(0);
     }
 }
+

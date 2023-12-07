@@ -1,85 +1,51 @@
-/* Common styles for all viewports */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    text-align: center;
+    background-color: #f4f4f4;
 }
 
-main {
-    padding: 2rem;
-}
-
-/* Additional styles for media.html */
-.media-container {
+.video-container {
     display: flex;
+    justify-content: space-around;
+    align-items: center;
     flex-wrap: wrap;
-    justify-content: space-between;
+    padding: 20px;
 }
 
-.video-section,
-.audio-section,
-.video-rail {
+.video {
     width: 30%;
-    margin-bottom: 2rem;
+    margin: 10px;
+    border-radius: 10px;
+    transition: transform 0.2s ease-in-out;
 }
 
-.video-container,
-.audio-container {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-top: 1rem;
-    position: relative;
-}
-
-.video-container video,
-.audio-container audio {
-    width: 100%;
-}
-
-.video-rail img {
-    width: 100%;
-    cursor: pointer;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 0.5rem;
-    transition: transform 0.3s ease;
-}
-
-.video-rail img:hover {
+.video:hover {
     transform: scale(1.1);
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+
+
+.testimonial-section {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.audio-testimonial {
+    margin-bottom: 20px;
 }
 
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+audio {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
 }
 

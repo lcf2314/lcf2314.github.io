@@ -33,36 +33,53 @@
 
 
 
-  <div class="media-container">
-    <section class="video-section">
-        <h2>Playback Area</h2>
-        <div class="video-container">
-            <video controls>
-                <source src="videos/featured_video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    </section>
-    <section class="audio-section">
-        <h2>Featured Audio</h2>
-        <div class="audio-container">
-            <audio id="audioPlayer" controls>
-              <source src="alee kinder - rain to snow  lyrics  FULL SONG.mp3" type="audio/mp3">
-                Your browser does not support the audio tag.
-            </audio>
-            <canvas id="audioCanvas" width="400" height="100"></canvas>
-        </div>
-    </section>
-    <section class="video-rail">
-        <h2>Video Rail - Click below</h2>
-        <div class="video-thumbnails">
-          <img src="img/34-asana-color-gradient.jpg" width = "5px" height = "50px" alt="Video 1" class="video-thumbnail" onclick="enlargeVideo('BaristaOne Twin Promo - The Ultimate Commercial Coffee Machine for Business.mp4')">
-          <img src="img/360_F_310162798_6hWbaSFgDtWp4AhhaKPlTgAZUDL1c4UY.jpg" width = "5px" height = "50px" alt="Video 2" class="video-thumbnail" onclick="enlargeVideo('City Vending Coffee Machine Promo Video.mp4')">
-          <img src="img/beautiful-color-ui-gradients-backgrounds-roseanna.png" width = "5px" height = "50px" alt="Video 3" class="video-thumbnail" onclick="enlargeVideo('Concordia Xpress Touch 0 Promo Video.mp4')">
-          <img src="img/images.jpeg" width = "5px" height = "50px" alt="Video 4" class="video-thumbnail" onclick="enlargeVideo('Espresso Machine Promo - Epic Coffee B Roll.mp4')">
-        </div>
-    </section>
+  <section id="banner2" class=""section-m1>
+    <h4>Product Demo And Media Section</h4>
+    <h2>Explore <span>trailers </span>and product demos</h2>
+    <br>
+    <button class="normal">Explore more</button>
+  </section>
+
+
+<br>
+
+<div class="video-container">
+  <video class="video" controls poster="./img/banner/coffee-grinder-still-life-tom-mc-nemar.jpg">
+    <source src="Concordia Xpress Touch 0 Promo Video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+  <video class="video" controls poster="./img/banner/cozy-morning-fresh-coffee-newspaper-generative-ia_209190-2673.avif">
+      <source src="City Vending Coffee Machine Promo Video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+  </video>
+
+  <video class="video" controls poster="./img/banner/coffee-grinder-still-life-tom-mc-nemar.jpg">
+      <source src="Concordia Xpress Touch 0 Promo Video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+  </video>
 </div>
+
+
+
+<div class="testimonial-section">
+  <h2>User Testimonials</h2>
+  <div class="audio-testimonial">
+      <audio controls>
+          <source src="alee kinder - rain to snow  lyrics  FULL SONG.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+      </audio>
+      <p>"I absolutely love the videos on this platform! The content is engaging, and the quality is top-notch. It has become my go-to place for informative and entertaining videos."</p>
+  </div>
+
+  <div class="audio-testimonial">
+      <audio controls>
+          <source src="alee kinder - rain to snow  lyrics  FULL SONG.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+      </audio>
+      <p>The variety of topics covered in the videos is fantastic. The testimonials from other users convinced me to give it a try, and I'm glad I did. Highly recommended for anyone looking for quality video content!</p>
+  </div>
+
 
 
 
@@ -100,52 +117,11 @@
 
 
   <script>
-    function enlargeVideo(videoSource) {
-        var videoContainer = document.querySelector('.video-container video');
-        videoContainer.src = videoSource;
-        videoContainer.parentElement.style.display = 'block';
-        videoContainer.play(); 
-    }
+    function playVideo(videoSource) {
+    var screen = document.getElementById('screen');
+    screen.innerHTML = '<video controls autoplay><source src="' + videoSource + '" type="video/mp4"></video>';
+}
 
-    var audio = document.getElementById('audioPlayer');
-    var audioCanvas = document.getElementById('audioCanvas');
-    var audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    var analyser = audioContext.createAnalyser();
-    var canvasContext = audioCanvas.getContext('2d');
-
-    var source = audioContext.createMediaElementSource(audio);
-    source.connect(analyser);
-    analyser.connect(audioContext.destination);
-
-    analyser.fftSize = 256;
-    var bufferLength = analyser.frequencyBinCount;
-    var dataArray = new Uint8Array(bufferLength);
-
-    function draw() {
-        analyser.getByteFrequencyData(dataArray);
-        canvasContext.clearRect(0, 0, audioCanvas.width, audioCanvas.height);
-
-        var barWidth = (audioCanvas.width / bufferLength) * 2.5;
-        var barHeight;
-        var x = 0;
-
-        for (var i = 0; i < bufferLength; i++) {
-            barHeight = dataArray[i] * 2;
-
-            canvasContext.fillStyle = '#3498db';
-            canvasContext.fillRect(x, audioCanvas.height - barHeight / 2, barWidth, barHeight);
-
-            x += barWidth + 1;
-        }
-
-        requestAnimationFrame(draw);
-    }
-
-    audio.addEventListener('play', function () {
-        audioContext.resume().then(() => {
-            draw();
-        });
-    });
 </script>
 
   <script src="App.js"></script>
